@@ -10,7 +10,7 @@ services:
   web:
     image: stellar:latest
     working_dir: /var/www/html/resources/assets/js/desktop
-    command: ["npm", "run", "start"]
+    command: ["yarn","start"]
     ports:
       - "${WEB_PORT}:3000"
     volumes:
