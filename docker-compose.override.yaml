@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+  stellar:
+    volumes:
+      - ./:/var/www/html
+    links:
+      - mysql
+
+
+  web:
+    image: stellar:latest
+    working_dir: /var/www/html/resources/assets/js/desktop
+    command: ["npm", "run", "start"]
+    ports:
+      - "${WEB_PORT}:3000"
+    volumes:
+      - ./:/var/www/html
+    links:
+      - stellar
+
+  mysql:
+    image: mysql:5.7.13
+    container_name: stellar-mysql
+    ports:
+      - "${MY_SQL_PORT}:3306"
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: ptran
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+
+volumes:
+  mysql:
+    driver: local

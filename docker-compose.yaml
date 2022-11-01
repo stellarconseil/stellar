@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  stellar:
+    build: .
+    image: stellar
+    ports:
+      - "${SERVICE_PORT}:8080"
+    env_file: .env
+    environment:
+      TZ: ${TZ}
